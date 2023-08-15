@@ -1,0 +1,1005 @@
+commit 090a7ec2f2fca9b4ddec05e39123e57dc0d73a2f
+Merge: 3ec0ce7 fe61459
+Author: str4d <thestr4d@gmail.com>
+Date:   Tue Dec 6 02:02:15 2022 +0000
+
+    Merge pull request #40 from zkcrypto/release-0.13.0
+    
+    Release 0.13.0
+
+commit fe6145951933a1f36456bc7fa21cbd9b6a865c1c
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Dec 6 00:58:27 2022 +0000
+
+    Release 0.13.0
+
+commit 3ec0ce7dec5865b2100e266cad82fc7af1b96f71
+Merge: 36141c3 92570b8
+Author: str4d <thestr4d@gmail.com>
+Date:   Thu Oct 13 07:06:34 2022 +0100
+
+    Merge pull request #38 from zkcrypto/release-0.12.1
+    
+    group 0.12.1
+
+commit 92570b8eb04e12c81573bcde79aeeb0ae100d88f
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Thu Oct 13 01:54:28 2022 +0000
+
+    group 0.12.1
+
+commit 36141c319a29e1a4aba3913b08b112881902f4c1
+Merge: a7f3ceb f61e3e4
+Author: str4d <thestr4d@gmail.com>
+Date:   Mon Sep 26 15:37:48 2022 +0100
+
+    Merge pull request #37 from zkcrypto/wnaf-memuse
+    
+    Add `memuse::DynamicUsage` impls for w-NAF structs
+
+commit f61e3e420ed1220c8f1f80988f8c6c5e202d8715
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Sat Sep 24 02:48:27 2022 +0000
+
+    Add `memuse::DynamicUsage` impls for w-NAF structs
+    
+    This enables the heap usage of these types to be measured at runtime.
+
+commit a7f3ceb2373e9fe536996f7b4d55c797f3e667f0
+Merge: 647e6ae b426589
+Author: str4d <thestr4d@gmail.com>
+Date:   Tue Sep 13 23:57:09 2022 +0100
+
+    Merge pull request #36 from zkcrypto/wnaf-caching-api-refactor
+    
+    Replace `Wnaf::{base, scalar}` with `WnafBase` and `WnafScalar`
+
+commit b42658985d5b732e3ca043c5b97ef16dc8b185f9
+Author: str4d <thestr4d@gmail.com>
+Date:   Tue Sep 13 22:47:56 2022 +0100
+
+    wnaf: Fix some code comments
+    
+    Co-authored-by: Daira Hopwood <daira@jacaranda.org>
+
+commit bbd331f564a05d516d7dd81a1ceb0e431d264546
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Sep 13 18:33:23 2022 +0000
+
+    Replace `Wnaf::{base, scalar}` with `WnafBase` and `WnafScalar`
+    
+    This change decouples the w-NAF form of the scalar from the specific
+    `Group` implementation, which enables reusing a scalar for both general
+    and subgroup scalar multiplication.
+
+commit 647e6ae8847e954d0fd769cfcbb7edc26edde320
+Merge: de0767a 4fea7cb
+Author: str4d <thestr4d@gmail.com>
+Date:   Mon Sep 12 22:57:57 2022 +0100
+
+    Merge pull request #35 from zkcrypto/wnaf-caching-apis
+    
+    Add `Wnaf` APIs for caching both bases and scalars
+
+commit 4fea7cba60317236dc6fa203e277337d2ee75bc8
+Author: str4d <thestr4d@gmail.com>
+Date:   Thu Sep 8 17:11:47 2022 +0100
+
+    Fix typo in `FixedWindow` documentation
+    
+    Co-authored-by: Daira Hopwood <daira@jacaranda.org>
+
+commit c78fbdb8f212003ed82082fba498027ff8c3f3ec
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Thu Sep 8 11:56:39 2022 +0000
+
+    Add `Wnaf` APIs for caching both bases and scalars
+    
+    This makes the `n * m` pattern more efficient (w-NAF tables / forms are
+    only computed once for each base / scalar) and has more predictable
+    memory usage (one w-NAF table of the specified window size per base, one
+    w-NAF form of the specified window size per scalar).
+
+commit 9f8316ab0c9fddf618e18e2ee905dca84fcaec8d
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Thu Sep 8 11:37:18 2022 +0000
+
+    Add example usage patterns to `Wnaf`
+
+commit de0767ab0a8a1f259a6b8ced7c1b156bb236b94b
+Merge: e9fc531 53973bb
+Author: str4d <thestr4d@gmail.com>
+Date:   Thu Sep 8 12:31:54 2022 +0100
+
+    Merge pull request #33 from zkcrypto/wnaf-reduce-allocations
+    
+    Reduce allocations in `group::Wnaf`
+
+commit 53973bba6fe78ba1205e3cc0b41f315e8830cb63
+Author: str4d <thestr4d@gmail.com>
+Date:   Thu Sep 8 12:19:59 2022 +0100
+
+    Document `LimbBuffer`
+    
+    Co-authored-by: Daira Hopwood <daira@jacaranda.org>
+
+commit 1b99c5f75bffd89ad825384a0a6df84581d9124d
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Wed Sep 7 23:27:54 2022 +0000
+
+    Remove remaining allocation from `group::wnaf::wnaf_form`
+    
+    This also removes the `byteorder` dependency, as we can depend solely on
+    APIs available in our MSRV.
+
+commit 6ca61a8a1c8ab58f5368de23f19aecc8492c9549
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Wed Sep 7 01:55:28 2022 +0000
+
+    Reserve sufficient space in `group::wnaf::wnaf_form`
+    
+    For a scalar with a 32-byte representation, this reduces the number of
+    allocations in `Wnaf::new().scalar(..).base(..)` from 9 to 3. The
+    amortized allocation cost (for a reused `Wnaf::new()`) remains at 1.
+
+commit e9fc531e7517b9684cfbd22a3c7308fec7e98d82
+Merge: 1e86726 d788e49
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Wed May 4 16:23:55 2022 -0600
+
+    Merge pull request #28 from zkcrypto/release-0.12.0
+    
+    Release 0.12.0
+
+commit d788e494d4e8be7e3a8f39b05b8b1132ebecf3cc
+Author: Sean Bowe <ewillbefull@gmail.com>
+Date:   Wed May 4 16:19:09 2022 -0600
+
+    Release 0.12.0
+
+commit d5645af44f7df0a556e8bc7780017c390aee7357
+Author: Sean Bowe <ewillbefull@gmail.com>
+Date:   Wed May 4 12:49:34 2022 -0600
+
+    MSRV bump to 1.56.0.
+
+commit 1e86726222e98be8dbad721310fbeb344d06c725
+Merge: 9c64222 7538efa
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Thu Sep 2 09:15:01 2021 -0600
+
+    Merge pull request #26 from zkcrypto/release-0.11.0
+    
+    Release 0.11.0
+
+commit 7538efadc62c926a2e602e0f419c285d15f5bb2f
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Thu Sep 2 00:33:04 2021 +0100
+
+    group 0.11.0
+
+commit 19386ce3f6205852ca2a83e33ed7558efb72c5ab
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Wed Sep 1 23:56:34 2021 +0100
+
+    Add `GroupEncoding::Repr: Copy + Send + Sync + 'static` bounds
+    
+    These bounds are generally useful in multithreaded contexts. 'static
+    ensures there are no internal references, and that the receiver can hold
+    onto the type as long as they like.
+    
+    Once `const_evaluatable_checked` lands, `GroupEncoding::Repr` will be
+    replaced by `[u8; GroupEncoding::ReprLen]`, which will satisfy these
+    bounds.
+    
+    Closes zkcrypto/group#24.
+
+commit 9c642222bc5b46a486773173d86cebae5f638a36
+Merge: 0a9a48d 7b3d5cb
+Author: str4d <thestr4d@gmail.com>
+Date:   Mon Aug 30 16:19:24 2021 +0100
+
+    Merge pull request #23 from zkcrypto/22-fix-mul-bounds
+    
+    Fix `{Cofactor, Prime}Curve: Mul` bounds
+
+commit 7b3d5cb9f6ddc689aa1046b1d39e2ed56381e719
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Wed Aug 25 23:31:34 2021 +0100
+
+    Fix `{Cofactor, Prime}Curve: Mul` bounds
+    
+    We had `for<'r>` lifetimes that were going unused, instead of enabling
+    the RHS to be a reference.
+    
+    Closes zkcrypto/group#22.
+
+commit 0a9a48ddaaa89042ac447801e67320c355e7c22a
+Merge: ea09f43 6fb4005
+Author: str4d <thestr4d@gmail.com>
+Date:   Tue Jun 1 23:06:02 2021 +0100
+
+    Merge pull request #21 from zkcrypto/release-0.10
+    
+    Release 0.10.0
+
+commit 6fb4005870b5ea52b00f3607dea75a89c055d6c1
+Author: Sean Bowe <ewillbefull@gmail.com>
+Date:   Tue Jun 1 15:50:57 2021 -0600
+
+    Release 0.10.0
+
+commit 910e2fe341bebb7390922d55e104869fd19992f3
+Author: Sean Bowe <ewillbefull@gmail.com>
+Date:   Tue Jun 1 16:02:48 2021 -0600
+
+    Update URLs in Cargo.toml
+
+commit ea09f43126bc8bd45842a72156b6d66aee95cecc
+Merge: 948c325 6c795af
+Author: str4d <thestr4d@gmail.com>
+Date:   Fri May 21 20:55:40 2021 +0100
+
+    Merge pull request #19 from zkcrypto/re-export-ff
+    
+    Re-export ff
+
+commit 948c32525acfcaa4c3828f61fb28ee41b3f9c8f0
+Merge: 9aed72f a778a46
+Author: str4d <thestr4d@gmail.com>
+Date:   Fri May 21 20:44:12 2021 +0100
+
+    Merge pull request #20 from zkcrypto/add-changelog
+    
+    Add a changelog
+
+commit 6c795af899e167310f43f12166efe93427818b4c
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Fri May 21 20:31:51 2021 +0100
+
+    Re-export ff crate
+    
+    Part of zkcrypto/pairing#107.
+
+commit a778a46bb9b892079398c76d6518fb326d504d76
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Fri May 21 20:31:16 2021 +0100
+
+    Add a changelog
+    
+    I added back-changes from the 0.8.0 and 0.9.0 releases.
+
+commit 9aed72ffd1f6abdde9c0dd5cd5f6cdd02f34e5e0
+Merge: 01b7a3e f6f1875
+Author: str4d <thestr4d@gmail.com>
+Date:   Thu May 20 23:56:48 2021 +0100
+
+    Merge pull request #18 from nuttycom/bitvec-0.22
+    
+    Update to bitvec 0.22
+
+commit f6f1875924dad336c4b0ae7812d43fece662616c
+Author: Kris Nuttycombe <kris@electriccoin.co>
+Date:   Mon Apr 5 17:42:34 2021 -0600
+
+    Update to bitvec 0.22
+    
+    - MSRV is now 1.51.
+    - CofactorGroup::is_torsion_free is no longer a provided method, to
+      avoid a hard dependency on the `bits` feature flag of ff.
+
+commit 01b7a3e0bfa2400067a53407ab9e78ef8affccdf
+Merge: babcad3 f2eff6d
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Wed Jan 6 08:43:28 2021 -0700
+
+    Merge pull request #17 from zkcrypto/release-0.9.0
+    
+    Release 0.9.0
+
+commit f2eff6d12433849c6a38dcf4d12707f7fe893f5c
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Wed Jan 6 00:33:58 2021 +0000
+
+    group 0.9.0
+
+commit babcad3b5cd75576afbb68483cccf29a31597f1d
+Merge: 58eb07f da645c5
+Author: str4d <thestr4d@gmail.com>
+Date:   Wed Jan 6 13:33:01 2021 +1300
+
+    Merge pull request #16 from tarcieri/rand_core-v0.6+rand-v0.8
+    
+    Bump `rand_core` dependency to v0.6; `rand` to v0.8
+
+commit da645c509f68034bef834ba74381fa379ba6cd93
+Author: Tony Arcieri <bascule@gmail.com>
+Date:   Sat Dec 19 09:42:45 2020 -0800
+
+    Bump `rand_core` dependency to v0.6; `rand` to v0.8
+    
+    Closes #15
+    
+    See also: zkcrypto/ff#49
+
+commit 58eb07f467d51c3f806f5a7d1fcb0f5d55e343ee
+Merge: 1ab3af8 64f2bfd
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Tue Sep 8 15:36:57 2020 -0600
+
+    Merge pull request #14 from zkcrypto/release-0.8.0
+    
+    Release 0.8.0
+
+commit 64f2bfdfe6aea18ecc3c5f75eed14dafa72afcae
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Sep 8 22:34:21 2020 +0100
+
+    group 0.8.0
+
+commit 1ab3af8a1af91df86a889c304b29e5e954d7a79c
+Merge: 920954b 67b7efc
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Tue Sep 8 15:33:22 2020 -0600
+
+    Merge pull request #12 from zkcrypto/alloc-deps
+    
+    Move byteorder dependency behind alloc feature flag
+
+commit 67b7efcbc80b61b765c3fc07d7c7bf9d8a80765d
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Sep 8 19:05:34 2020 +0100
+
+    Move byteorder dependency behind alloc feature flag
+    
+    We only use it for the w-NAF implementation.
+
+commit 920954be8ddfc4e17a90cc346a4469b4c2a5428d
+Merge: 2942324 da4b519
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Tue Sep 8 15:31:05 2020 -0600
+
+    Merge pull request #13 from zkcrypto/ff-0.8
+    
+    Migrate to ff 0.8
+
+commit da4b519fcda498de109ba1f4cbc9321045d95a0b
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Sep 8 22:27:17 2020 +0100
+
+    Remove fmt::Display bounds from traits
+
+commit f8d2d344be9a315882bb086fb85c7aec1eef42f5
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Wed Sep 2 13:03:49 2020 +0100
+
+    cargo fmt
+
+commit d2cc1167fd91c9aa4237c80e9704c41c217f88c0
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Wed Sep 2 13:03:27 2020 +0100
+
+    Migrate to ff 0.8
+    
+    The MSRV is now 1.44.0, matching the ff crate.
+
+commit 2942324876cdbb5c94140ad39ae83da642c30374
+Merge: 6c9dcc1 303e6d5
+Author: str4d <thestr4d@gmail.com>
+Date:   Fri Sep 4 22:58:32 2020 +1200
+
+    Merge pull request #11 from tarcieri/rng-improvements
+    
+    Add `tests` feature; make `rand` and `rand_xorshift` deps optional
+
+commit 303e6d5acdab6f4f3fe611e4a00c856443393874
+Author: Tony Arcieri <bascule@gmail.com>
+Date:   Thu Sep 3 11:34:12 2020 -0700
+
+    Add `tests` feature; make `rand` and `rand_xorshift` deps optional
+    
+    Closes #10
+    
+    Gates the `tests` module along with the `rand` and `rand_xorshift`
+    dependencies on a new `tests` cargo feature.
+    
+    This allows the core library to depend on `rand_core` alone.
+    
+    Additionally, uses `impl Trait` syntactic sugar for the `RngCore`
+    argument to `randomize` (as discussed in #10).
+
+commit 6c9dcc184359749251078c68469feea50592368e
+Merge: 34a838c 33788ee
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Thu Sep 3 11:31:03 2020 -0600
+
+    Merge pull request #9 from tarcieri/no_std
+    
+    no_std support
+
+commit 33788ee1381b672bf753489fbfe88ae6d93925c4
+Author: Tony Arcieri <bascule@gmail.com>
+Date:   Tue Aug 25 14:26:04 2020 -0700
+
+    no_std support
+
+commit 34a838cdb762a3c4c0cebbbbbff763918555aaee
+Merge: 79df81a e06a331
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Tue Aug 25 15:21:51 2020 -0600
+
+    Merge pull request #8 from zkcrypto/ci-workflow
+    
+    CI workflow
+
+commit e06a331c6e46ba1691192c7a3245ca92c1485a90
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Aug 25 21:45:27 2020 +0100
+
+    cargo fmt
+
+commit 0d4b66077b14ef55c3378b8d12ea74cc33383a87
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Aug 25 21:45:10 2020 +0100
+
+    Add rust-toolchain file with MSRV
+
+commit 2fbf10f431c76c9e08493f5ae1110ae14f315876
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Aug 25 21:33:18 2020 +0100
+
+    Remove paths from dependencies
+    
+    Now that we have extracted the release changes from the
+    zcash/librustzcash subtree, we are no longer in a workspace with
+    relative paths to these dependencies.
+
+commit 9ca10fab74f89f02a49600fa24fcb64df817cea9
+Author: Jack Grigg <thestr4d@gmail.com>
+Date:   Tue Aug 25 21:32:00 2020 +0100
+
+    CI: Add an Actions workflow for CI
+
+commit 79df81a3553db2ee71835ae931c6e94dac8e67a3
+Merge: df09867 e52ed8a
+Author: str4d <thestr4d@gmail.com>
+Date:   Wed Aug 26 07:26:08 2020 +1200
+
+    Merge pull request #7 from zkcrypto/release-0.7.0
+    
+    Release 0.7.0
+
+commit e52ed8aa95797ec44de132475d46363229337ac4
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat Aug 22 11:33:31 2020 +0100
+
+    group 0.7.0
+
+commit 411b28fe1896d67efb75d9ba3a7dbbf523f6f8fb
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat Aug 22 11:31:01 2020 +0100
+
+    ff 0.7.0
+
+commit 460b468d68022a5092ecb37593ca40b12f6ec67f
+Author: Jack Grigg <jack@z.cash>
+Date:   Tue Aug 18 14:52:10 2020 +0100
+
+    group: GroupEncoding::Repr: Default is not required to be a valid element
+
+commit a343c0ddd2ccf17cadd0b44b3d767f665df7cb41
+Author: Jack Grigg <jack@z.cash>
+Date:   Mon Aug 17 23:04:42 2020 +0100
+
+    group: Exclude identity element from output of Group::random
+
+commit 3163db05b9d0d19b99e5fb9342b3638c0902a33d
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu Aug 13 18:11:44 2020 +0100
+
+    pairing: Require G1 and G2 to be PrimeCurve
+    
+    Pairings require that G1, G2, and GT are groups of prime order.
+
+commit c7320c66257b993e1b0fc26e458a2df11cec0e84
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu Aug 13 00:09:27 2020 +0100
+
+    group: Fix documentation of CofactorGroup::clear_cofactor
+    
+    Co-authored-by: Sean Bowe <ewillbefull@gmail.com>
+
+commit cfee552017d2900bf394cb62f293ba014fc35fd2
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed Aug 12 08:16:44 2020 +0100
+
+    group: Document that Group::random is non-deterministic
+
+commit 427545eb4c33c74f6fa7fa9a2467b1b965ec9d06
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed Aug 12 08:12:48 2020 +0100
+
+    group: Hard-code a w-NAF window size of 4
+    
+    We were already ignoring the actual bit length of the scalar, and
+    selecting the window size based on the maximum bit length, which
+    effectively hard-coded a window size of 4.
+
+commit 40bfa0865c6b3fdb4828bfb66e0ed7cdda656579
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed Aug 12 08:02:29 2020 +0100
+
+    group: CofactorGroup::mul_by_cofactor -> CofactorGroup::clear_cofactor
+    
+    The generic API now only guarantees that the torsion component is
+    cleared deterministically; group elements may be multiplied by multiples
+    of the cofactor (not necessarily the actual cofactor), as long as the
+    choice of multiplier is fixed for a given implementation.
+
+commit b6bc30ba549ea0db779d9338dca06d25add0fe61
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat Jun 6 11:29:26 2020 +1200
+
+    group: Make Wnaf generic over Group
+    
+    Wnaf was originally generic over CurveProjective; in the prior refactor
+    commit, we renamed this to CofactorCurve. But w-NAF only requires scalar
+    multiplication, which is provided by the Group trait, so we relax the
+    bounds on Wnaf to enable it to be used with any group. We move the
+    generic w-NAF helper methods from the Curve trait to a new WnafGroup
+    extension trait, to keep the w-NAF API surface self-contained, and not
+    expose it to users who aren't using it.
+
+commit 42b9a6b539ca56778cbb472b951c5f98d57d8534
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat May 30 00:49:44 2020 +1200
+
+    group: Separate prime and cofactor traits into modules
+    
+    Instead of having the Group crate hold a Subgroup associated type (and
+    thus needing to define the subgroup of a prime-order group as itself),
+    we specify two separate sets of traits for prime-order groups and ones
+    with a cofactor.
+    
+    Protocol implementors can either restrict their implementations to only
+    work with PrimeGroup, or can explicitly choose to support CofactorGroup
+    and then explicitly handle the subgroup edge cases with e.g.
+    CofactorGroup::mul_by_cofactor (which would be a no-op for PrimeGroup).
+    
+    Protocol implementors can also choose to specialise to elliptic curves
+    if they want to leverage an affine representation and mixed addition in
+    their protocol for efficiency, or they can ignore those traits and stick
+    with the simpler group-focused traits.
+
+commit d21e420540e3ece41e4d8ffcd322b476c9694e57
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri May 29 21:52:39 2020 +1200
+
+    group: Renaming prior to trait refactor
+    
+    This will reduce the size of the subsequent refactor diff.
+
+commit 731d05f265d760e2443fbfeb5e38333cfe58b55f
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri May 29 20:58:54 2020 +1200
+
+    group: Remove "compressed" notion from GroupEncoding
+    
+    A generic group has a single encoding; for elliptic curves, this
+    happens to be the compressed encoding.
+
+commit 2c65e3ca1dc924de9f1370b60bb7aa151da20c9e
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri May 29 20:22:53 2020 +1200
+
+    group: Extract compressed encodings from CurveAffine trait
+
+commit 8cf64a1b4d389b958aa6d8529e247fbeb63717bd
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 21 11:58:57 2020 +1200
+
+    group: Default implementation of CurveProjective::batch_normalize
+    
+    For convenience. Implementations will usually override this to take
+    advantage of implementation-specific batching optimisations.
+
+commit 5a87d9f9f8feff66fcf13d4ad37f7ea15a01d017
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 21 11:48:52 2020 +1200
+
+    group: Move uncompressed encodings to an UncompressedEncoding trait
+    
+    Specifications of deployed elliptic curves fall into one of two
+    categories:
+    - They specify both compressed and uncompressed encodings, allowing
+      implementations to use either depending on performance vs data size
+      considerations.
+    - They specify a single point encoding format using point compression.
+    
+    I am unaware of any elliptic curve specification that explicitly forbids
+    compressed encodings.
+    
+    To support both categories of elliptic curves, we provide the
+    CurveAffine::Compressed associated type which all curves must define,
+    and then curves that additionally specify an uncompressed encoding may
+    implement the UncompressedEncoding trait and its Uncompressed associated
+    type.
+    
+    pairing::PairingCurveAffine continues to require that its groups provide
+    uncompressed encodings, because this is relied upon by bellman::groth16.
+    We can revisit this restriction when that module is refactored as a
+    separate crate.
+
+commit 3f3d2130daa3505b7083bbcb07090d38173b3315
+Merge: 29fc5ac 15bc628
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed Jun 17 09:48:24 2020 +1200
+
+    Merge branch 'pairing-refactor'
+
+commit 15bc62823c192af69d63fa5cc3f2439acd01ece5
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 21 09:55:05 2020 +1200
+
+    group: Remove CurveProjective::Base and CurveAffine::Base
+    
+    These associated types were completly unused. The only place we need
+    information about the base field of an elliptic curve is inside Jubjub
+    when operating over its coordinates to implement EC math inside the
+    circuit, and we can handle that either concretely, or with a future
+    trait specifically for that use-case.
+
+commit 29fc5acf57425075ebe73e4d1c52bbc739072332
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat May 30 15:18:25 2020 +1200
+
+    ff: Remove ScalarEngine
+
+commit 68694960d29d063d87e1803d95b7c0b47d47a60e
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed May 20 11:30:41 2020 +1200
+
+    group: Rename into_*(&self) -> to_*(&self)
+    
+    Rust naming convention uses the into_ prefix for methods that consume
+    self, and the to_ prefix for methods that take an immutable reference.
+
+commit ea4351d850a31d6bef67d48df74eb3abb698d7b8
+Author: Jack Grigg <jack@z.cash>
+Date:   Tue May 19 18:30:31 2020 +1200
+
+    group: Remove EncodedPoint::from_affine
+    
+    The EncodedPoint trait is replaced by explicit bounds on the
+    CurveAffine::{Uncompressed, Compressed} associated types.
+
+commit 364fcf97407f7dd6b8af5cc739aa715d9a05162f
+Author: Jack Grigg <jack@z.cash>
+Date:   Tue May 19 18:10:10 2020 +1200
+
+    group: Remove EncodedPoint::{into_affine, into_affine_unchecked}
+    
+    Replaced by explicit APIs on the CurveAffine trait.
+    
+    GroupDecodingError has been moved into pairing::bls12_381::ec, as it is
+    no longer used by the group traits.
+
+commit 7b30646040e4c1cf190aec9e7a57ecf1fc8cf1a1
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri May 15 17:49:45 2020 +1200
+
+    group: Add mixed-addition scalar multiplication bounds to CurveAffine
+    
+    Replaces the explicit CurveAffine::mul trait method.
+
+commit eafbba3ffaa4870da3bf06294b43f4e7278ebfd0
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri May 15 17:33:34 2020 +1200
+
+    group: Return subtle::Choice from CurveAffine::is_identity
+
+commit 41ee24399d7be450b890d73508ee2b4fabfe7360
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri May 15 17:08:43 2020 +1200
+
+    group: Direct-to-affine CurveProjective::batch_normalize
+    
+    Replaces the mutating CurveProjective::batch_normalization API, and
+    removes the need for CurveProjective::is_normalized.
+    
+    The new temporary implementation in pairing::bls12_381::ec is adapted
+    from bls12_381::g1.
+
+commit fa147f82e20a15ba1b92854e6054e4e995a6e7c3
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 14 23:44:51 2020 +1200
+
+    group: Return subtle::Choice from Group::is_identity
+
+commit c3a79e32156f64b08ceda913af8545016a276654
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 14 23:16:07 2020 +1200
+
+    group: Add scalar multiplication bounds to Group
+    
+    The Scalar associated type is moved from CurveProjective to Group.
+
+commit c144e5212d9bffddd4b147660147109484fafd20
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 14 22:53:39 2020 +1200
+
+    group: Add Group::Subgroup associated type
+    
+    For prime-order groups, this may be Self.
+
+commit 78f43d4eb7618123e54abdfcbf1e654eb667ba65
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 14 20:37:14 2020 +1200
+
+    group: Move CurveProjective::double to Group
+
+commit a0859d431525d20ef7b4191dd12bd021bb55960f
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 14 20:30:22 2020 +1200
+
+    group: Sum + for<'a> Sum<&'a Self> bounds for Group
+
+commit 6bbef688fd1ff5158b48c2fbf9b3fef04495c132
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 14 20:03:29 2020 +1200
+
+    group: Define group operations on Group trait
+    
+    The GroupOps trait represents the group operation (addition), and the
+    combination of the group operation with group inversion (subtraction).
+    Group inversion (negation) is constrained directly on the Group trait.
+
+commit 476221b4525b436c3186929cedd91bed841eecf8
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu May 14 18:10:06 2020 +1200
+
+    group: Introduce Group and PrimeGroup traits
+    
+    Group represents a cryptographic group with a large prime-order subgroup
+    and a small cofactor. PrimeGroup further constrains the group to have a
+    cofactor of one.
+
+commit fb4d55ea2f911d99ecd532b6eb5cd285e028e91f
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed May 6 18:49:03 2020 +1200
+
+    Remove Engine associated type from CurveAffine and CurveProjective
+    
+    The type Curve*::Engine::Fr is equivalent to Curve*::Scalar, making
+    Engine a redundant associated type.
+
+commit 5cd60f4247f22ed62cc97deb3cf5d22b2f6f9728
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed May 6 14:02:24 2020 +1200
+
+    Make CurveProjective::double take &self and return Self
+
+commit 37b1f7a2f45f23e3277c9b40e54a628672ffcdd7
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed May 6 13:40:44 2020 +1200
+
+    group: Rename zero and one to identity and generator
+
+commit e1008c900878e06069493108792af7564aa070e9
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri Apr 24 14:32:44 2020 +1200
+
+    Remove explicit std::marker from Sized bound
+    
+    Sized is always part of the prelude, and binding on std causes
+    compilation issues for no-std crates.
+
+commit 3b155e52fe6096450d82a8a12ccd6167bec404d0
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat May 2 18:55:13 2020 +1200
+
+    ff: Rename PrimeField::into_repr -> PrimeField::to_repr
+
+commit 1e5be13cc585d7a8e413bcf51b2483f0282b2dcf
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri May 1 13:48:30 2020 +1200
+
+    ff: Remove SqrtField trait
+    
+    The sqrt() function is now part of the Field trait. ff_derive returns an
+    error on fields for which it does not support generating a square root
+    function.
+    
+    Note that Fq6 and Fq12 in pairing::bls12_381 leave the function
+    unimplemented. They will be dropped once the migration to the bls12_381
+    crate is complete. The equivalent structs in that crate are not exposed.
+
+commit df0986786422676f0a61cdede4289497d72c1411
+Merge: 5e26745 6c89cba
+Author: str4d <thestr4d@gmail.com>
+Date:   Thu Apr 30 15:19:30 2020 +1200
+
+    Merge pull request #5 from zkcrypto/group-0.6.0
+    
+    group 0.6.0
+
+commit eae502c49f749927f78d0658419c69d8ab45b356
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu Apr 23 17:32:04 2020 +1200
+
+    ff: Remove PrimeFieldRepr trait
+    
+    The ff::PrimeField::Repr associated type now has the minimal necessary
+    bounds, which can be satisfied by a newtype around a byte array.
+
+commit 0599365a5c08a5e8287be8bcb3094040b2747818
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu Mar 26 19:23:29 2020 +1300
+
+    group: Rewrite wNAF to remove dependency on ff::PrimeFieldRepr
+    
+    Adapted from Scalar::non_adjacent_form in curve25519-dalek.
+
+commit c2412e7e45f5d1f9dda2adf769caca900d52b950
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu Mar 26 19:00:46 2020 +1300
+
+    group: Take scalar by reference in CurveProjective::recommended_wnaf_for_scalar
+
+commit be0d3c49393f60dbdf6eb8850c7a6a7a46c9fe56
+Merge: 6c89cba 0427d14
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat Mar 14 10:36:58 2020 +1300
+
+    Merge branch 'develop'
+
+commit 6c89cba0be75393060297717d7c13305e10d3369
+Author: Sean Bowe <ewillbefull@gmail.com>
+Date:   Thu Mar 12 15:59:19 2020 -0600
+
+    Version bump of all crates (except librustzcash)
+
+commit 9629c9f9d6726c9f8e23502873f38aed1b64dab1
+Author: Sean Bowe <ewillbefull@gmail.com>
+Date:   Thu Mar 12 15:32:44 2020 -0600
+
+    Remove Sized for RngCore
+    
+    Co-authored-by: Weiliang Li <to.be.impressive@gmail.com>
+
+commit 0427d14e12f0c963e61ea7b04599311397809fd8
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat Dec 14 17:20:47 2019 +0000
+
+    Move from CurveProjective::add_assign_mixed to traits
+
+commit b950317b40fa055812f7ec54294620dfcc742043
+Author: Jack Grigg <jack@z.cash>
+Date:   Sat Dec 14 17:15:16 2019 +0000
+
+    Extract curve operations into default impl traits
+    
+    This makes it possible to implement mixed addition using operator-backed
+    traits without running into type annotation problems.
+
+commit 9c41db0e32bbc1b6e057db364bd910e46ce0bcb8
+Author: Jack Grigg <jack@z.cash>
+Date:   Mon May 27 17:36:22 2019 +0100
+
+    Move from Curve*::negate to Neg operator
+
+commit 8f14a8f5add5f5d157e99a5d80c83d9787efdefc
+Author: Jack Grigg <jack@z.cash>
+Date:   Mon May 27 17:15:16 2019 +0100
+
+    Move additive CurveProjective operators to traits
+
+commit fc42150ec3649e6dbd20241288c413168f8e4cd8
+Author: Jack Grigg <jack@z.cash>
+Date:   Thu Dec 12 22:52:17 2019 +0000
+
+    Move from Field::negate to Neg operator
+
+commit 5e26745c9636e5e6408ea0be367663693895c80e
+Author: Jack Grigg <jack@z.cash>
+Date:   Tue Oct 8 16:01:24 2019 +1300
+
+    group 0.2.0
+
+commit c31f768a52af6854c9435e5054e16d40dffe53d3
+Author: Jack Grigg <jack@z.cash>
+Date:   Tue Sep 24 10:53:52 2019 +0100
+
+    Update READMEs
+
+commit 4267ef7218cef5973bfd10740fe7e48391ca0983
+Author: Jack Grigg <jack@z.cash>
+Date:   Tue Sep 24 10:31:04 2019 +0100
+
+    CI: Check intra-doc links
+    
+    Credit: https://twitter.com/tomaka17/status/1176017851410526208
+
+commit 2f850703c55bf6f04581c1958d1afc4ee70dcdca
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri Aug 2 14:57:34 2019 +0100
+
+    Add READMEs to Cargo.toml files
+    
+    This will cause crates.io to render each crate's README as its
+    information page.
+
+commit 61eaa209980265480e7dacbb681ab1ac52c6aa8d
+Author: Eirik Ogilvie-Wigley <eirik@z.cash>
+Date:   Tue Aug 20 22:22:03 2019 -0600
+
+    cargo fmt
+
+commit 7eecf77f7c268f1fe4cdeeaa096b8166fe719d84
+Author: Eirik Ogilvie-Wigley <eirik@z.cash>
+Date:   Tue Aug 20 22:08:10 2019 -0600
+
+    cargo fix --edition-idioms for group
+
+commit 75157c7e6a333ae605b6afa7b6842b7bebf5f375
+Author: Eirik Ogilvie-Wigley <eirik@z.cash>
+Date:   Tue Aug 20 18:31:20 2019 -0600
+
+    Add edition = 2018
+
+commit a5e14af189c43aad670df24b8e4236b7178eaad1
+Author: Eirik Ogilvie-Wigley <eirik@z.cash>
+Date:   Fri Aug 16 22:58:49 2019 -0600
+
+    cargo fix --edition for group
+
+commit b2f16c2e81b30e7307ff0c09077f915142d7bfdd
+Author: Jack Grigg <jack@z.cash>
+Date:   Sun Jul 14 12:19:01 2019 +0100
+
+    Migrate to rand 0.7
+
+commit 9987d0cf1935fbb97d7a87b5a7795ad943b4a927
+Author: Jack Grigg <jack@z.cash>
+Date:   Fri Jul 12 23:51:35 2019 -0400
+
+    Migrate ff, group, pairing, and bellman to rand 0.6
+
+commit 3bc47f6015616e039506eb1d02dc57b04393bc94
+Author: Jack Grigg <jack@z.cash>
+Date:   Wed Jul 10 18:35:57 2019 -0400
+
+    Migrate group to rand 0.5
+
+commit 9706cd0f71b64cc8eeb255ed6f6690e857a6372e
+Author: Jack Grigg <jack@z.cash>
+Date:   Sun Jan 6 09:50:07 2019 +0000
+
+    Add ff and group crates to Cargo workspace
+
+commit ef56fabf7ba3ed990a7886836c855298c9c5eefa
+Author: Sean Bowe <ewillbefull@gmail.com>
+Date:   Thu Jul 5 12:18:56 2018 -0600
+
+    Update version
+
+commit 2ffa94f714ee6ef2725397030dd79a0a8d31958b
+Merge: f6d9ec8 94cacc6
+Author: ebfull <ewillbefull@gmail.com>
+Date:   Thu Jul 5 12:18:34 2018 -0600
+
+    Merge pull request #1 from str4d/from-pairing
+    
+    Migrate curve traits and tests, and WNAF, from pairing
+
+commit 94cacc6152c1ad0d24fc16e0dd6819caf6eef360
+Author: Jack Grigg <jack@z.cash>
+Date:   Mon Jul 2 20:03:57 2018 +0100
+
+    Migrate curve traits and tests, and WNAF, from pairing
+
+commit f6d9ec8faf96e5fd8a74ec95bbb4e707be3ad7b5
+Author: Sean Bowe <ewillbefull@gmail.com>
+Date:   Mon Jul 2 07:59:33 2018 -0600
+
+    Initial commit
